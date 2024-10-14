@@ -19,6 +19,9 @@ def lambda_handler(event, context):
     url = "url"
     res = requests.get(url)
     soup = BeautifulSoup(res.text, 'html.parser')
+    if not soup.select("#koenno"):
+        print('The page is invalid.')
+        return
     show_select = soup.select("#koenno")[0]
 
     if len(show_select.contents) == 7:
