@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     soup = BeautifulSoup(res.text, 'html.parser')
     show_ttl = soup.select(".show_list_ttl")
     if len(show_ttl) != 0:
-        WEB_HOOK_URL = os["WEB_HOOK_URL"]
+        WEB_HOOK_URL = os.environ["WEB_HOOK_URL"]
         requests.post(WEB_HOOK_URL, data=json.dumps({
             # メッセージ
             "text": "<!channel> message",
